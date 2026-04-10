@@ -1,12 +1,19 @@
 package za.ac.iie.topsoccerteams
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Arrays
+import kotlin.math.log
+
+//created function to display array values in terminal
+fun logArrayValues(arr: Array<String>){
+    Log.v("Array Values:" , Arrays.toString(arr))
+}
 
 class MainActivity : AppCompatActivity() {
     //created array to holf top 5 soccer teams
@@ -22,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val teamsTxt = findViewById<TextView>(R.id.TeamsDisplayID)
-
-
-
         //long way
         //variable to hold all teams to display
       /*  var teamsDisplay = ""
@@ -41,13 +45,21 @@ class MainActivity : AppCompatActivity() {
         var teamsDisplay = ""
         var count = 0
 
+        //value inside () called arguments
+        logArrayValues(teams)
+
+
         //reassigning position 0 of the teams array
         teams[0] = "Mam Sundowns FC :)"
         //while loop to iterate through the teams array and display
-        while(count < teams.count()){
+//        while(count < teams.count()){
+//            teamsDisplay += "${teams[count]}\n"
+//             count++
+//}
+        //for loop to iterate through the teams array and display
+        for (team in teams ){
             teamsDisplay += "${teams[count]}\n"
-             count++
-}
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
