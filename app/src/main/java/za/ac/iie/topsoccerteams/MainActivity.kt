@@ -1,6 +1,7 @@
 package za.ac.iie.topsoccerteams
 
 import android.os.Bundle
+import android.os.LimitExceededException
 import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -11,27 +12,33 @@ import java.util.Arrays
 import kotlin.math.log
 
 //created function to display array values in terminal
-fun logArrayValues(arr: Array<String>){
-    Log.v("Array Values:" , Arrays.toString(arr))
+fun logArrayValues(arr: Array<String>, limit: Int) {
+    if (limit == 0) {
+        //logs the content of an array of strings
+        Log.v("Array Values:", Arrays.toString(arr))
+    }
+    else {
+        Log.v("Array Values:", Arrays.toString(arr.sliceArray(0..limit -1) ))
+    }
 }
 
+//create function for longest display here
+
+
 class MainActivity : AppCompatActivity() {
-    //created array to holf top 5 soccer teams
     //global variable
+    //created array to hold top 5 soccer teams
     val teams = arrayOf<String>("Mam Sundowns FC","Orlando Pirates","Bidvest wits",
         "Stellenbosch FC","Sek United FC")
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val teamsTxt = findViewById<TextView>(R.id.TeamsDisplayID)
-        //long way
-        //variable to hold all teams to display
-      /*  var teamsDisplay = ""
+        /* longer method
+        variable to hold all teams to display
+        var teamsDisplay = ""
         teamsDisplay += "${teams[0]}\n"
         teamsDisplay += "${teams[1]}\n"
         teamsDisplay += "${teams[2]}\n"
@@ -41,25 +48,30 @@ class MainActivity : AppCompatActivity() {
         //+= means concatenated
         teamsTxt.text = teamsDisplay*/
 
-
+        val teamsTxt = findViewById<TextView>(R.id.TeamsDisplayID)
         var teamsDisplay = ""
         var count = 0
 
         //value inside () called arguments
         logArrayValues(teams)
+        logArrayValues(teams,4)
 
+        //call longest string function here
 
         //reassigning position 0 of the teams array
         teams[0] = "Mam Sundowns FC :)"
-        //while loop to iterate through the teams array and display
-//        while(count < teams.count()){
-//            teamsDisplay += "${teams[count]}\n"
-//             count++
-//}
+
+        /*while loop to iterate through the teams array and display
+          while(count < teams.count()){
+          teamsDisplay += "${teams[count]}\n"
+          count++ */
+
         //for loop to iterate through the teams array and display
         for (team in teams ){
             teamsDisplay += "${teams[count]}\n"
         }
+        teamsTxt.text = teamsDisplay
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
