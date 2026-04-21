@@ -12,8 +12,8 @@ android {
 
     defaultConfig {
         applicationId = "za.ac.iie.topsoccerteams"
-        minSdk = 35
-        targetSdk = 36
+        minSdk = 27
+        targetSdk = 27
         versionCode = 1
         versionName = "1.0"
 

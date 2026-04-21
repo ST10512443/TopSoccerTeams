@@ -35,6 +35,19 @@ fun getLongestString(arr: Array<String>):String {
     return longestElement
 }
 
+//create function for shortest display here
+fun getShortestString(arr: Array<String>):String {
+    var ShortestLength = 50
+    var ShortestElement = ""
+    for (element in arr) {
+        if (element.count() < ShortestLength) {
+            ShortestLength = element.count()
+            ShortestElement = element
+        }
+    }
+    return ShortestElement
+}
+
 class MainActivity : AppCompatActivity() {
     //global variable
     //created array to hold top 5 soccer teams
@@ -63,12 +76,16 @@ class MainActivity : AppCompatActivity() {
         var count = 0
 
         //value inside () called arguments
-        logArrayValues(teams)
+        logArrayValues(teams,0)
         logArrayValues(teams,4)
 
         //call longest string function here
     var longestName = getLongestString(teams)
     Log.v("Longest name",longestName)
+
+        //call shortest string function here
+        var ShortestName = getShortestString(teams)
+        Log.v("Longest name",ShortestName)
 
         //reassigning position 0 of the teams array
         teams[0] = "Mam Sundowns FC :)"
