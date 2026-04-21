@@ -23,7 +23,17 @@ fun logArrayValues(arr: Array<String>, limit: Int) {
 }
 
 //create function for longest display here
-
+fun getLongestString(arr: Array<String>):String {
+    var longestLength = 0
+    var longestElement = ""
+    for (element in arr) {
+        if (element.count() > longestLength) {
+            longestLength = element.count()
+            longestElement = element
+        }
+    }
+    return longestElement
+}
 
 class MainActivity : AppCompatActivity() {
     //global variable
@@ -57,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         logArrayValues(teams,4)
 
         //call longest string function here
+    var longestName = getLongestString(teams)
+    Log.v("Longest name",longestName)
 
         //reassigning position 0 of the teams array
         teams[0] = "Mam Sundowns FC :)"
